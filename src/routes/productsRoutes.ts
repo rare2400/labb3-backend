@@ -7,6 +7,7 @@ export const productRoutes: ServerRoute[] = [
     // GET /api/products: fetch all products
     method: "GET",
     path: "/api/products",
+    options: { auth: false }, // No authentication required
     handler: async (_request: Request, h: ResponseToolkit) => {
       const products = await Product.find().sort({ createdAt: -1 });
 
@@ -17,6 +18,7 @@ export const productRoutes: ServerRoute[] = [
     // GET /api/products/{id}: fetch one product by ID
     method: "GET",
     path: "/api/products/{id}",
+    options: { auth: false }, // No authentication required
     handler: async (request: Request, h: ResponseToolkit) => {
       const product = await Product.findById(request.params.id);
 
