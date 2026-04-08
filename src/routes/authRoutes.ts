@@ -59,13 +59,32 @@ export const authRoutes: ServerRoute[] = [
                     { expiresIn: "8h" }
                 );
 
-                return h.response({ token }).code(200);
+                return h.response({
+                    token,
+                    user: {
+                        _id: user._id,
+                        username: user.username
+                    }
+                }).code(200);
             }
             catch (err) {
                 console.error("Login error:", err);
                 return h.response({ message: "Något gick fel vid inloggning" }).code(500);
             }
         }
+    },
+    {
+        // GET /api/auth/me: get current authenticated user info (protected route)
+        method: "GET",
+        path: "/api/auth/me",
+        handler: async (request: Request, h: ResponseToolkit) => {
+            const credentials = request.auth.credentials as { id: string; username: string };
+
+            const user = await User.findById(credentials.id).select("-password");
+            if (!user) return h.response({ message: "Användaren hittades inte" }).code(404);
+
+            return h.response({ user }).code(200);
+        },
     },
     // GET /api/users: get all users (protected route)
     {
