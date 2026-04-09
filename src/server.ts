@@ -17,7 +17,7 @@ const init = async (): Promise<void> => {
     // Create Hapi server instance
     const server = Hapi.server({
       port: process.env.PORT || 3000,
-      host: "localhost",
+      host: "0.0.0.0",
 
       // Enable CORS for all routes
       routes: {
