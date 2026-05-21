@@ -57,7 +57,7 @@ npm run dev
 | Metod  | Endpoint          | Skyddad | Beskrivning          |
 |--------|-------------------|---------|----------------------|
 | GET    | /api/products     | Nej     | Hämtar alla produkter|
-| PUT    | /api/products/:id | Nej     | Hämtar en produkt    |
+| GET    | /api/products/:id | Nej     | Hämtar en produkt    |
 | POST   | /api/products     | Ja      | Skapar en ny produkt |
 | PUT    | /api/products/:id | Ja      | Uppdaterar en produkt|
 | DELETE | /api/products/:id | Ja      | Tar bort en produkt  |
